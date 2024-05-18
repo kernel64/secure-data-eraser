@@ -39,17 +39,4 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="res\logo-secure-data.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="logoSecureData.bmp">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="secure-data-eraser.rc">
-      <Filter>Fichiers de ressources</Filter>
-    </ResourceCompile>
-  </ItemGroup>
 </Project>
