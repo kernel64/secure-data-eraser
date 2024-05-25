@@ -39,4 +39,14 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\aymen\Pictures\Screenshots\logo.bmp">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

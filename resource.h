@@ -1,8 +1,8 @@
 //{{NO_DEPENDENCIES}}
 // fichier Include Microsoft Visual C++.
-// Utilisé par secure-data-eraser.rc
+// Utilisé par Resource.rc
 //
-#define IDB_PNG1                        101
+#define IDB_BITMAP1                     101
 
 // Next default values for new objects
 // 

@@ -68,14 +68,7 @@ namespace securedataeraser {
 			// 
 			// pictureBox1
 			// 
-			// Charger l'image à partir du fichier
-			String^ cheminImage = "res/logo-secure-data.png";
-			System::Drawing::Image^ image = System::Drawing::Image::FromFile(cheminImage);
-
-			if (image != nullptr) {
-				// Assigner l'image chargée au PictureBox
-				this->pictureBox1->Image = image;
-			}
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(25, 22);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(138, 131);
@@ -138,9 +131,9 @@ namespace securedataeraser {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->pictureBox1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"AboutForm";
 			this->Text = L"About !";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
