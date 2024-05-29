@@ -157,7 +157,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="C:\Users\aymen\Pictures\Screenshots\logo.bmp" />
     <Image Include="res\logo-secure-data.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
