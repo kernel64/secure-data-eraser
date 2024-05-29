@@ -145,7 +145,7 @@
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\AboutForm.resx">
-		<LogicalName>securedataeraser.AboutForm.resources</LogicalName>
+      <LogicalName>securedataeraser.AboutForm.resources</LogicalName>
       <DependentUpon>src\AboutForm.h</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\aymen\Pictures\Screenshots\logo.bmp" />
+    <Image Include="res\logo-secure-data.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

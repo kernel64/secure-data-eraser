@@ -1,3 +1,16 @@
+/*
+ * This program is distributed under the terms of the GNU General Public License version 3.0 (GPL-3.0).
+ * You should have received a copy of the license along with this program. If not, you can
+ * find it on the Free Software Foundation's website: https://www.gnu.org/licenses/gpl-3.0.html
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GPL-3.0 license with this program. If not,
+ * see the "LICENSE" file or visit the Free Software Foundation's website.
+ */
+
 #pragma once
 #include <cstdlib>
 #include "src\AboutForm.h"
@@ -72,6 +85,7 @@ namespace securedataeraser {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->aboutBtn = (gcnew System::Windows::Forms::Button());
 			this->eraseBtn = (gcnew System::Windows::Forms::Button());
@@ -189,6 +203,7 @@ namespace securedataeraser {
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->Name = L"MainForm";
 			this->groupBox1->ResumeLayout(false);
@@ -206,16 +221,13 @@ namespace securedataeraser {
 
 		AboutForm^ infoForm = gcnew AboutForm();
 
-		// Afficher la nouvelle forme en tant que boîte de dialogue modale
 		infoForm->ShowDialog();
 
 	}
 	private: System::Void addFilesBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		// Créer une boîte de dialogue pour la sélection des fichiers
-		
-		this->openFileDialog1->Multiselect = true; // Permettre la sélection de plusieurs fichiers
 
-		// Afficher la boîte de dialogue et vérifier si l'utilisateur a appuyé sur OK
+		this->openFileDialog1->Multiselect = true; 
+		
 		if (this->openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 
 			for each (String ^ filePath in this->openFileDialog1->FileNames) {
@@ -252,23 +264,22 @@ namespace securedataeraser {
 
 				int totalSteps = countSelectedFiles;
 				int currentStep = 0;
-				List<String^>^ elementsToRemove = gcnew List<String^>(); // Liste temporaire pour stocker les éléments à supprimer
+				List<String^>^ elementsToRemove = gcnew List<String^>(); 
 
 
 				for each (String ^ fichier in filesCheckedList->CheckedItems) {
-					// Supprimer le fichier de manière sécurisée
+					
 					SupprimerFichierSecurise(fichier);
 
-					// Mettre à jour la barre de progression
+					
 					currentStep++;
 					int progressPercentage = (currentStep * 100) / totalSteps;
 					progressBar1->Value = progressPercentage;
-					Application::DoEvents(); // Permet à l'interface utilisateur de se mettre à jour
+					Application::DoEvents(); 
 
 					elementsToRemove->Add(fichier);
 				}
 
-				// Supprimer les éléments de la CheckedListBox après la boucle de suppression sécurisée
 				for each (String ^ fichierToRemove in elementsToRemove) {
 					filesCheckedList->Items->Remove(fichierToRemove);
 				}
@@ -279,55 +290,37 @@ namespace securedataeraser {
 			}
 		}
 
-		//RafraichirListeFichiers();
-
 	}
 
 	void SupprimerFichierSecurise(String^ cheminFichier) {
 			   try {
-				   // Obtenir la taille du fichier
+				   
 				   long tailleFichier = System::IO::File::ReadAllBytes(cheminFichier)->Length;
 
-				   // Créer un tableau de bytes pour stocker les données à écrire
+				   
 				   array<Byte>^ donneesAleatoires = gcnew array<Byte>(tailleFichier);
 
-				   // Générer des données aléatoires pour chaque passe
+				   
 				   for (int passe = 0; passe < 5; passe++) {
 					   System::Security::Cryptography::RandomNumberGenerator::Create()->GetBytes(donneesAleatoires);
 
-					   // Écrire les données dans le fichier
+					   
 					   System::IO::File::WriteAllBytes(cheminFichier, donneesAleatoires);
 				   }
 
-				   // Supprimer le fichier
+				   
 				   System::IO::File::Delete(cheminFichier);
-				   //ChangerCouleurElement(cheminFichier, Color::Green);
 			   }
-			   catch (Exception^ ex) {
-				   // Gérer les erreurs de suppression de fichier
-				   //MessageBox::Show("Erreur lors de la suppression du fichier : " + ex->Message, "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				   //ChangerCouleurElement(cheminFichier, Color::Red);
+			   catch (Exception^ ex) {  
+				   MessageBox::Show("Erreur lors de la suppression du fichier : " + ex->Message, "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error); 
 			   }
 	}
 	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		for (int i = 0; i < filesCheckedList->Items->Count; i++) {
-			// Cocher ou décocher l'élément en fonction de l'état du CheckBox
+			
 			filesCheckedList->SetItemChecked(i, checkBox1->Checked);
 		}
 	}
-
-
-		   void ChangerCouleurElement(String^ element, Color couleur) {
-			   // Parcourir tous les éléments de la CheckedListBox
-			   for (int i = 0; i < filesCheckedList->Items->Count; i++) {
-				   // Vérifier si l'élément correspond à celui qui vient d'être supprimé
-				   if (filesCheckedList->GetItemText(filesCheckedList->Items[i]) == element) {
-					   // Changer la couleur de l'élément en formatant le texte avec la couleur spécifiée
-					   filesCheckedList->Items[i] = String::Format("<font color='{0}'>{1}</font>", couleur.Name, element);
-					   break; // Sortir de la boucle une fois la couleur modifiée
-				   }
-			   }
-		   }
 };
 
 
