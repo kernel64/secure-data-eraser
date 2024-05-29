@@ -32,6 +32,21 @@ jobs:
       - name: Build x86 solution
         run: msbuild /p:Configuration=Release /p:Platform=x86 secure-data-eraser.sln
 
+      - name: Build x64 solution
+        run: msbuild /p:Configuration=Release /p:Platform=x64 secure-data-eraser.sln
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ steps.extract_version.outputs.version }}
+          body: Release ${{ steps.extract_version.outputs.version }}
+          draft: false
+          prerelease: false
+
       - name: Upload x86 Release Asset
         id: upload_x86_release_asset
         uses: actions/upload-release-asset@v1
@@ -42,9 +57,6 @@ jobs:
           asset_path: ./Release/secure-data-eraser.exe
           asset_name: secure-data-eraser_x86_${{ steps.extract_version.outputs.version }}.exe
           asset_content_type: application/octet-stream
-
-      - name: Build x64 solution
-        run: msbuild /p:Configuration=Release /p:Platform=x64 secure-data-eraser.sln
 
       - name: Upload x64 Release Asset
         id: upload_x64_release_asset
