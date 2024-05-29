@@ -17,10 +17,14 @@ jobs:
         id: extract_version
         run: echo "::set-output name=version::${GITHUB_REF##*/}"
 
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '4.7.x'
       - name: Setup MSVC environment
         uses: microsoft/setup-msbuild@v1
-        with:
-          vs-version: '2022'
+#        with:
+#          vs-version: '2022'
 
       - name: Restore NuGet packages
         run: nuget restore secure-data-eraser.sln
