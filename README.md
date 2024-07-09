@@ -11,7 +11,7 @@ To build this project, you can use Visual Studio or download the binary files. P
 1. Clone the repository:
 
 ```sh
-    git clone https://github.com/your-username/your-repo.git
+    git clone git@github.com:kernel64/secure-data-eraser.git
 ```
 
 2. Open the solution file:
