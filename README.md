@@ -29,7 +29,9 @@ To build this project, you can use Visual Studio or download the binary files. P
 If you prefer to use the pre-built binary files, you can download them from the releases section of this repository.
 
 #### Download the binaries:
-        * Go to the Releases page.
-        * Download the latest binary release.
+
+   * Go to the [Releases page](https://github.com/kernel64/secure-data-eraser/releases).
+  
+   * Download the latest binary release.
    
 > Important Note: The binary files provided are not signed. Please use them at your own discretion and ensure they meet your security requirements.
