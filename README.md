@@ -16,19 +16,19 @@ To build this project, you can use Visual Studio or download the binary files. P
 
 2. Open the solution file:
 
-Navigate to the repository folder and open the .sln file in Visual Studio.
+    Navigate to the repository folder and open the .sln file in Visual Studio.
 
-4. Build the solution:
+3. Build the solution:
 
-* Go to the "Build" menu and select "Build Solution".
+    * Go to the "Build" menu and select "Build Solution".
 
-* Ensure that all dependencies are correctly installed.
+    * Ensure that all dependencies are correctly installed.
 
 ## Using Binary Files
 
 If you prefer to use the pre-built binary files, you can download them from the releases section of this repository.
 
-### Download the binaries:
+#### Download the binaries:
         * Go to the Releases page.
         * Download the latest binary release.
    
